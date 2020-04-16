@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <form #userForm="ngForm" (ngSubmit)="postUser(userForm)">
+                <input type="hidden" class="form-control mt-2" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id" placeholder="_id">
+                <input type="text"  class="form-control mt-2" name="name" #name="ngModel" [(ngModel)]="userService.selectedUser.name" placeholder="Name">
+                <input type="email"  class="form-control mt-2" name="email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" placeholder="email">
+                <input type="password"  class="form-control mt-2" name="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" placeholder="password">
+                <button type="submit" class="btn btn-block btn-primary mt-2">Save</button>
+            </form>
+            
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userService.users">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.password}}</td>
+                        <td><button (click)="editUser(user)" class="btn btn-sm btn-primary">Edit</button></td>
+                        <td><button (click)="deleteUser(user._id)" class="btn btn-sm btn-danger">Delete</button></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
